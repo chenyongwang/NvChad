@@ -7,6 +7,7 @@ M.general = {
     ["<leader>tt"] = { "<cmd> SymbolsOutline <CR>", "Open SymbolsOutline", opts = { nowait = true } },
     ["<leader>fa"] = { "^", "Beginning of line", opts = { nowait = true, silent = true } },
     ["<leader>fe"] = { "$", "End of line", opts = { nowait = true, silent = true } },
+    ["gw"] = { "<C-w>w", "光标切换到下一个窗口", opts = { nowait = true, silent = true } },
     ["<Left>"] = { "h", "光标左移一个字符", opts = { noremap = true, nowait = true, silent = true } },
     ["<Right>"] = { "l", "光标右移一个字符", opts = { noremap = true, nowait = true, silent = true } },
 
@@ -34,38 +35,44 @@ M.general = {
 
     -- 复制当前行内容并在下一行粘贴
     ["<C-d><C-d>"] = {
-      ":y1 <CR>p",
+      "<cmd> yy <CR>p",
       "Duplicate current line",
       opts = { noremap = true, nowait = true, silent = true },
     },
 
     -- 窗口大小管理
     ["<A-.>"] = {
-      "winnr() <= winnr('$') - winnr() ? '<c-w>5>' : '<c-w>5<'",
-      "窗口大小向左增加5",
+      "winnr() <= winnr('$') - winnr() ? '<c-w>3>' : '<c-w>3<'",
+      "窗口大小向左增加3",
       opts = { noremap = true, expr = true },
     },
     ["<A-,>"] = {
-      "winnr() <= winnr('$') - winnr() ? '<c-w>5<' : '<c-w>5>'",
-      "窗口大小向右增加5",
+      "winnr() <= winnr('$') - winnr() ? '<c-w>3<' : '<c-w>3>'",
+      "窗口大小向右增加3",
       opts = { noremap = true, expr = true },
     },
     ["<A-+>"] = {
-      "winnr() <= winnr('$') - winnr() ? '<c-w>5+' : '<c-w>5-'",
-      "窗口水平方向大小增加5",
+      "winnr() <= winnr('$') - winnr() ? '<c-w>3+' : '<c-w>3-'",
+      "窗口水平方向大小增加3",
       opts = { noremap = true, expr = true },
     },
     ["<A-_>"] = {
-      "winnr() <= winnr('$') - winnr() ? '<c-w>5-' : '<c-w>5+'",
-      "窗口水平方向大小减小5",
+      "winnr() <= winnr('$') - winnr() ? '<c-w>3-' : '<c-w>3+'",
+      "窗口水平方向大小减小3",
       opts = { noremap = true, expr = true },
     },
 
     ["<A-`>"] = {
       -- "<cmd> lua require('goto-preview').close_all_win()<CR>",
-      "<cmd>:q<CR>",
+      "<cmd> q <CR>",
       "关闭当前窗口",
       opts = { noremap = true, silent = true },
+    },
+
+    ["<leader>gl"] = {
+      "<cmd> Gitsigns toggle_current_line_blame <CR>",
+      "显示当前行Git提交信息",
+      opts = { noremap = true, nowait = true, silent = true },
     },
   },
 
@@ -136,6 +143,40 @@ M.general = {
     -- 左/右快速移动光标
     ["<A-l>"] = { "<C-Right>", "光标快速向右移动一个单词", opts = { noremap = true, nowait = true } },
     ["<A-h>"] = { "<C-Left>", "光标快速向左移动一个单词", opts = { noremap = true, nowait = true } },
+
+    ["<leader>gl"] = {
+      "<cmd> Gitsigns toggle_current_line_blame <CR>",
+      "显示当前行Git提交信息",
+      opts = { noremap = true, nowait = true, silent = true },
+    },
+  },
+}
+
+M.floatwindow = {
+  plugin = false,
+
+  n = {
+
+    ["<leader>wt"] = {
+      "<cmd> FloatToTop <Cr>",
+      "浮动窗口置顶",
+      opts = { noremap = true, nowait = true, silent = true },
+    },
+    ["<leader>wg"] = {
+      "<cmd> FloatRearrangeByGrid <Cr>",
+      "浮动窗口按照网格排列",
+      opts = { noremap = true, nowait = true, silent = true },
+    },
+    ["<leader>wf"] = {
+      "<cmd> FloatRearrangeByFalls <Cr>",
+      "浮动窗口按照瀑布排列",
+      opts = { noremap = true, nowait = true, silent = true },
+    },
+    ["<leader>we"] = {
+      "<cmd> FloatOpenInMainWin <Cr>",
+      "在主窗口打开当前浮动窗口",
+      opts = { noremap = true, nowait = true, silent = true },
+    },
   },
 }
 

@@ -1,5 +1,7 @@
 local overrides = require "custom.configs.overrides"
 
+require("custom.floatwindow").setup()
+
 ---@type NvPluginSpec[]
 local plugins = {
 
@@ -99,7 +101,7 @@ local plugins = {
     config = function()
       require("goto-preview").setup {
         default_mappings = true,
-        width = 118,
+        width = 110,
         height = 30,
         -- opacity = 50,
         resizing_mappings = true,
@@ -135,11 +137,40 @@ local plugins = {
 
   {
     "Pocco81/auto-save.nvim",
-    lazy = false,
+    lazy = true,
+    enabled = false,
     config = function()
       require("auto-save").setup {
         -- your config goes here
         -- or just leave it empty :)
+      }
+    end,
+  },
+
+  {
+    "Exafunction/codeium.vim",
+    lazy = true,
+    enabled = false,
+    config = function()
+      vim.g.codeium_disable_bindings = 0
+    end,
+  },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    lazy = true,
+    enabled = false,
+    config = function()
+      vim.opt.list = true
+      -- vim.opt.listchars:append "space:⋅"
+      -- vim.opt.listchars:append "eol:↴"
+
+      require("indent_blankline").setup {
+        show_end_of_line = true,
+        -- space_char_blankline = " ",
+        -- for example, context is off by default, use this to turn it on
+        show_current_context = true,
+        show_current_context_start = true,
       }
     end,
   },
