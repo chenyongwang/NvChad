@@ -16,11 +16,17 @@ This can be used as an example custom config for NvChad, this branch is a minima
 
 # 修改vim statusline主题
 
-基于~/.local/share/nvim/lazy/ui/lua/nvchad_ui/statusline/default.lua文件修改，修改前建议保存好default.lua文件
+基于~/.local/share/nvim/lazy/ui/lua/nvchad/statusline/default.lua文件修改，修改前建议保存好default.lua文件
 1. 修改M.fileInfo函数，将local filename的%:t改为%:.显示全路径
 2. 添加函数，以下函数从vscode.lua中拷贝而来
+
+   ```lua
    M.cursor_position_line_and_column = function()
    M.file_encoding = function()
+   ```
 3. run函数中对应位置添加 
+
+   ```lua
    modules.cursor_position_line_and_column(),
    modules.file_encoding(),
+   ```
